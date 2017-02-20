@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{25D25AF4-47E0-4B58-9D0E-AE745D342F6E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{92E89A9F-4234-40AA-9104-F9E7621FDC88}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "com.mytube.mini.web", "src\com.mytube.mini.web\com.mytube.mini.web.xproj", "{BBB97DFE-BA43-4145-9929-33713197AC65}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBB97DFE-BA43-4145-9929-33713197AC65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBB97DFE-BA43-4145-9929-33713197AC65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBB97DFE-BA43-4145-9929-33713197AC65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBB97DFE-BA43-4145-9929-33713197AC65}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BBB97DFE-BA43-4145-9929-33713197AC65} = {25D25AF4-47E0-4B58-9D0E-AE745D342F6E}
+	EndGlobalSection
+EndGlobal
