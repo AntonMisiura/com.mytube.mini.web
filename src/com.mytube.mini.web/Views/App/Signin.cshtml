@@ -1,0 +1,42 @@
+﻿@model com.mytube.mini.web.ViewModels.SigninViewModel
+@{
+    ViewBag.Title = "Sign In";
+}
+
+@section scripts{
+<script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+}
+<h4>Sign in Page</h4>
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly">
+        @if (ViewBag.UserMessage != null)
+        {
+            <div>@ViewBag.UserMessage</div>
+        }
+    </div>
+    <span asp-validation-summary="ModelOnly"></span>
+    <label asp-for="Name">Name</label>
+    <input asp-for="Name" />
+    <span asp-validation-for="Name"></span>
+
+    <label asp-for="Login">Login</label>
+    <input asp-for="Login" />
+    <span asp-validation-for="Login"></span>
+
+    <label asp-for="Password">Password</label>
+    <input asp-for="Password" />
+    <span asp-validation-for="Password"></span>
+
+    <label asp-for="Email">Email</label>
+    <input type="email" asp-for="Email" />
+    <span asp-validation-for="Email"></span>
+
+    <label asp-for="Message">Message</label>
+    <textarea cols="40" rows="4" asp-for="Message"></textarea>
+    <span asp-validation-for="Message"></span>
+    <div>
+        <input type="submit" value="Sign in" />
+    </div>
+</form>

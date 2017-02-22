@@ -11,11 +11,13 @@
 <body>
 
     <div id="sidebar">
+        <img src="~/img/" alt="userphoto" class="userphoto" />
         <span id="username">User</span>
         <ul class="menu">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
+            <li class="active"><a asp-controller="App" asp-action="Index">Home</a></li>
+            <li><a asp-controller="App" asp-action="Login">Log in</a></li>
+            <li><a asp-controller="App" asp-action="Signin">Sign in</a></li>
+            <li><a href="#">Log Out</a></li>
         </ul>
     </div>
 
@@ -33,6 +35,8 @@
     </div>
 
     <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+    @RenderSection("scripts", false)
+
     <script type="text/javascript" src="~/js/script.js"></script>
 
 </body>
