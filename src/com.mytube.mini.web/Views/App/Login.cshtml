@@ -7,26 +7,37 @@
     <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
 }
-<h4>Log in Page</h4>
 
-<form method="post">
-    <div asp-validation-summary="ModelOnly">
-        @if (ViewBag.UserMessage != null)
-        {
-            <div>@ViewBag.UserMessage</div>
-        }
+
+<div class="row ">
+    <div class="col-md-6 offset-3">
+        <h4>Log in Page</h4>
+
+        <form method="post">
+            <div asp-validation-summary="ModelOnly">
+                @if (ViewBag.UserMessage != null)
+                {
+                    <div>@ViewBag.UserMessage</div>
+                }
+            </div>
+            <span asp-validation-summary="ModelOnly"></span>
+
+            <div class="form-group">
+                <label asp-for="Login">Login</label>
+                <input asp-for="Login" class="form-control" />
+                <span asp-validation-for="Login" class="text-muted"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password">Password</label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-muted"></span>
+            </div>
+
+            <div>
+                <a asp-controller="App" asp-action="Index" class="btn btn-default btn-lg">Cancel</a>
+                <input type="submit" value="Log In" class="btn btn-warning btn-lg" />
+            </div>
+        </form>
     </div>
-    <span asp-validation-summary="ModelOnly"></span>
-
-    <label asp-for="Login">Login</label>
-    <input asp-for="Login" />
-    <span asp-validation-for="Login"></span>
-
-    <label asp-for="Password">Password</label>
-    <input asp-for="Password" />
-    <span asp-validation-for="Password"></span>
-
-    <div>
-        <input type="submit" value="Log In" />
-    </div>
-</form>
+</div>
