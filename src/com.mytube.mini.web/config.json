@@ -1,5 +1,8 @@
 {
   "MailSettings": {
     "ToAddress": "misiura.anton@gmail.com"
+  },
+  "ConnectionStrings": {
+    "TubeContextConnection":  "Server=(localdb)\\MSSQLLocalDB;Database=TubeDb;Trusted_Connection=true;MultipleActiveResultSets=true;"
   }
 }

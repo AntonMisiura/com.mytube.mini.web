@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<com.mytube.mini.web.Models.Videos>
+@{
     ViewBag.Title = "Home";
     Layout = "_Layout";
 }
@@ -8,4 +9,10 @@
 
 <form>
     <h5>Sort by date/popularity</h5>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>@item.VideoName : @item.AddedDate.ToString("d")</li>
+        }
+    </ul>
 </form>

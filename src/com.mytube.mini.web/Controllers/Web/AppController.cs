@@ -1,24 +1,46 @@
-﻿using com.mytube.mini.web.Services;
+﻿using com.mytube.mini.web.Models;
+using com.mytube.mini.web.Services;
 using com.mytube.mini.web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using System;
 
 namespace com.mytube.mini.web.Controllers.Web
 {
     public class AppController : Controller
     {
+        private ILogger<AppController> _logger;
+        private ITubeRepository _repository;
         private IConfigurationRoot _config;
         private IMailService _mailService;
 
-        public AppController(IMailService mailService, IConfigurationRoot config)
+        public AppController(IMailService mailService,
+            IConfigurationRoot config,
+            ITubeRepository repository,
+            ILogger<AppController> logger)
         {
             _mailService = mailService;
             _config = config;
+            _repository = repository;
+            _logger = logger;
         }
 
         public IActionResult Index()
         {
-            return View();
+            try
+            {
+                var videos = _repository.GetAllVideos();
+                var users = _repository.GetAllUsers();
+                var ratings = _repository.GetAllRatings();
+
+                return View(videos);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed!!{ex.Message}");
+                return Redirect("/error");
+            }
         }
 
         public IActionResult Login()

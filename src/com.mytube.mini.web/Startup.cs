@@ -1,8 +1,10 @@
-﻿using com.mytube.mini.web.Services;
+﻿using com.mytube.mini.web.Models;
+using com.mytube.mini.web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace com.mytube.mini.web
 {
@@ -37,15 +39,30 @@ namespace com.mytube.mini.web
                 //implementing a real mail service
             }
 
+            services.AddDbContext<TubeContext>();
+
+            services.AddScoped<ITubeRepository, TubeRepository>();
+
+            services.AddTransient<TubeContextSeedData>();
+
             services.AddMvc();
         }
 
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app,
+            IHostingEnvironment env,
+            TubeContextSeedData seeder,
+            ILoggerFactory factory)
         {
+
             if (env.IsEnvironment("Development"))
             {
                 app.UseDeveloperExceptionPage();
+                factory.AddDebug(LogLevel.Information);
+            }
+            else
+            {
+                factory.AddDebug(LogLevel.Error);
             }
 
             app.UseStaticFiles();
@@ -59,6 +76,7 @@ namespace com.mytube.mini.web
                     );
             });
 
+            seeder.EnsureSeedData().Wait();
         }
     }
 }
