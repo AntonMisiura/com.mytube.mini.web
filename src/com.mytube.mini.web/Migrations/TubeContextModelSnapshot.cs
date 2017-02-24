@@ -33,6 +33,8 @@ namespace com.mytube.mini.web.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("VideoId");
+
                     b.ToTable("Ratings");
                 });
 
@@ -71,7 +73,25 @@ namespace com.mytube.mini.web.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Videos");
+                });
+
+            modelBuilder.Entity("com.mytube.mini.web.Models.Ratings", b =>
+                {
+                    b.HasOne("com.mytube.mini.web.Models.Videos", "Video")
+                        .WithMany("Ratings")
+                        .HasForeignKey("VideoId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("com.mytube.mini.web.Models.Videos", b =>
+                {
+                    b.HasOne("com.mytube.mini.web.Models.Users", "User")
+                        .WithMany("Videos")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }

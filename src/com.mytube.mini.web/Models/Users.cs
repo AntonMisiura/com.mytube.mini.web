@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace com.mytube.mini.web.Models
 {
@@ -9,5 +10,7 @@ namespace com.mytube.mini.web.Models
         public string FullName { get; set; }
         public string Password { get; set; }
         public DateTime RegistrationDate { get; set; }
+
+        public ICollection<Videos> Videos { get; set; }
     }
 }

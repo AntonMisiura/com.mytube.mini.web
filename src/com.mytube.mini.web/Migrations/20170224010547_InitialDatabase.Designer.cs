@@ -8,7 +8,7 @@ using com.mytube.mini.web.Models;
 namespace com.mytube.mini.web.Migrations
 {
     [DbContext(typeof(TubeContext))]
-    [Migration("20170223153537_InitialDatabase")]
+    [Migration("20170224010547_InitialDatabase")]
     partial class InitialDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,8 @@ namespace com.mytube.mini.web.Migrations
                     b.Property<int>("VideoId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("VideoId");
 
                     b.ToTable("Ratings");
                 });
@@ -72,7 +74,25 @@ namespace com.mytube.mini.web.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Videos");
+                });
+
+            modelBuilder.Entity("com.mytube.mini.web.Models.Ratings", b =>
+                {
+                    b.HasOne("com.mytube.mini.web.Models.Videos", "Video")
+                        .WithMany("Ratings")
+                        .HasForeignKey("VideoId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("com.mytube.mini.web.Models.Videos", b =>
+                {
+                    b.HasOne("com.mytube.mini.web.Models.Users", "User")
+                        .WithMany("Videos")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }
