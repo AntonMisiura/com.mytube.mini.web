@@ -12,6 +12,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "com.mytube.mini.web", "src\com.mytube.mini.web\com.mytube.mini.web.xproj", "{BBB97DFE-BA43-4145-9929-33713197AC65}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "com.mytube.mini.db", "com.mytube.mini.db\com.mytube.mini.db.sqlproj", "{C177F73E-8561-4B3F-904B-8E02CE6D5C56}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "com.mytube.mini.core", "src\com.mytube.mini.core\com.mytube.mini.core.xproj", "{DBB8FB4C-CF2E-43AA-A09C-1A13945691E0}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "com.mytube.mini.impl", "src\com.mytube.mini.impl\com.mytube.mini.impl.xproj", "{6A95803F-C1FE-4BA3-9A83-91A00CEC5F6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,11 +28,28 @@ Global
 		{BBB97DFE-BA43-4145-9929-33713197AC65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBB97DFE-BA43-4145-9929-33713197AC65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBB97DFE-BA43-4145-9929-33713197AC65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C177F73E-8561-4B3F-904B-8E02CE6D5C56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C177F73E-8561-4B3F-904B-8E02CE6D5C56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C177F73E-8561-4B3F-904B-8E02CE6D5C56}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C177F73E-8561-4B3F-904B-8E02CE6D5C56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C177F73E-8561-4B3F-904B-8E02CE6D5C56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C177F73E-8561-4B3F-904B-8E02CE6D5C56}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{DBB8FB4C-CF2E-43AA-A09C-1A13945691E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBB8FB4C-CF2E-43AA-A09C-1A13945691E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBB8FB4C-CF2E-43AA-A09C-1A13945691E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBB8FB4C-CF2E-43AA-A09C-1A13945691E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A95803F-C1FE-4BA3-9A83-91A00CEC5F6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A95803F-C1FE-4BA3-9A83-91A00CEC5F6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A95803F-C1FE-4BA3-9A83-91A00CEC5F6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A95803F-C1FE-4BA3-9A83-91A00CEC5F6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BBB97DFE-BA43-4145-9929-33713197AC65} = {25D25AF4-47E0-4B58-9D0E-AE745D342F6E}
+		{C177F73E-8561-4B3F-904B-8E02CE6D5C56} = {25D25AF4-47E0-4B58-9D0E-AE745D342F6E}
+		{DBB8FB4C-CF2E-43AA-A09C-1A13945691E0} = {25D25AF4-47E0-4B58-9D0E-AE745D342F6E}
+		{6A95803F-C1FE-4BA3-9A83-91A00CEC5F6C} = {25D25AF4-47E0-4B58-9D0E-AE745D342F6E}
 	EndGlobalSection
 EndGlobal

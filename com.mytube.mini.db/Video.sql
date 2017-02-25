@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[Video]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+    [UserId] INT NOT NULL,
+    [Name] NVARCHAR(1024) NOT NULL,
+    [Path] NVARCHAR(1024) NOT NULL,
+    [ScreenPath] NVARCHAR(1024) NOT NULL,
+    [CreatedDate] DATETIME2 NOT NULL DEFAULT GetUtcDate(),
+    CONSTRAINT [FK_Video_ToUser] FOREIGN KEY ([UserId]) REFERENCES [User]([Id])
+)
