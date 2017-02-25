@@ -1,4 +1,4 @@
-﻿@model IEnumerable<com.mytube.mini.web.Models.Videos>
+﻿@model IEnumerable<com.mytube.mini.core.Entities.Video>
 @{
     ViewBag.Title = "Home";
     Layout = "_Layout";
@@ -12,7 +12,7 @@
     <ul>
         @foreach (var item in Model)
         {
-            <li>@item.VideoName : @item.AddedDate.ToString("d")</li>
+            <li>@item.Name : @item.CreatedDate.ToString("d")</li>
         }
     </ul>
 </form>

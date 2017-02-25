@@ -1,8 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using com.mytube.mini.core.Contracts;
+using com.mytube.mini.core.Entities;
+using Microsoft.Extensions.Logging;
 
-namespace com.mytube.mini.web.Models
+namespace com.mytube.mini.impl.EF.Repo
 {
     public class TubeRepository : ITubeRepository
     {
@@ -16,21 +18,21 @@ namespace com.mytube.mini.web.Models
             _logger = logger;
         }
 
-        public IEnumerable<Videos> GetAllVideos()
+        public IEnumerable<Video> GetAllVideos()
         {
             _logger.LogInformation("Getting all videos from DB");
 
             return _context.Videos.ToList();
         }
 
-        public IEnumerable<Users> GetAllUsers()
+        public IEnumerable<User> GetAllUsers()
         {
             _logger.LogInformation("Getting all users from DB");
 
             return _context.Users.ToList();
         }
 
-        public IEnumerable<Ratings> GetAllRatings()
+        public IEnumerable<Rating> GetAllRatings()
         {
             _logger.LogInformation("Getting all ratings from DB");
 

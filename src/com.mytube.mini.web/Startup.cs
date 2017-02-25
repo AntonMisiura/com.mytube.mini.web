@@ -1,4 +1,6 @@
-﻿using com.mytube.mini.web.Models;
+﻿using com.mytube.mini.core.Contracts;
+using com.mytube.mini.impl.EF;
+using com.mytube.mini.impl.EF.Repo;
 using com.mytube.mini.web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,15 +45,12 @@ namespace com.mytube.mini.web
 
             services.AddScoped<ITubeRepository, TubeRepository>();
 
-            services.AddTransient<TubeContextSeedData>();
-
             services.AddMvc();
         }
 
 
         public void Configure(IApplicationBuilder app,
             IHostingEnvironment env,
-            TubeContextSeedData seeder,
             ILoggerFactory factory)
         {
 
@@ -75,8 +74,6 @@ namespace com.mytube.mini.web
                     defaults: new { controller = "App", action = "Index" }
                     );
             });
-
-            seeder.EnsureSeedData().Wait();
         }
     }
 }

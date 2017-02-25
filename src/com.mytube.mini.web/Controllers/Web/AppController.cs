@@ -1,4 +1,4 @@
-﻿using com.mytube.mini.web.Models;
+﻿using com.mytube.mini.core.Contracts;
 using com.mytube.mini.web.Services;
 using com.mytube.mini.web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
