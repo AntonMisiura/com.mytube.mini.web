@@ -1,14 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using com.mytube.mini.core.Contracts;
 using com.mytube.mini.core.Entities;
 using System.Linq;
 
 namespace com.mytube.mini.impl.EF.Repo
 {
-    public class UserRepository : AbstractRepository, IRepository<User>
+    public class UserRepository : Repository<User>, IUserRepository
     {
-        public IEnumerable<User> GetAll()
+        public UserRepository(TubeContext context) : base(context)
         {
-            return context.Users.ToList();
+        }
+
+
+        public User GetByLogin(string login)
+        {
+            return Context.Set<User>().FirstOrDefault(e => e.Login == login);
         }
     }
 }

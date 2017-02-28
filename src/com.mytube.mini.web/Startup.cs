@@ -1,12 +1,16 @@
-﻿using com.mytube.mini.core.Contracts;
+﻿using AutoMapper;
+using com.mytube.mini.core.Contracts;
+using com.mytube.mini.core.Entities;
 using com.mytube.mini.impl.EF;
 using com.mytube.mini.impl.EF.Repo;
 using com.mytube.mini.web.Services;
+using com.mytube.mini.web.ViewModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
 
 namespace com.mytube.mini.web
 {
@@ -43,9 +47,16 @@ namespace com.mytube.mini.web
 
             services.AddDbContext<TubeContext>();
 
-            services.AddScoped<ITubeRepository, TubeRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IRepository<Video>, Repository<Video>>();
+            services.AddTransient<IRepository<Rating>, Repository<Rating>>();
 
-            services.AddMvc();
+
+            services.AddMvc()
+                .AddJsonOptions(config =>
+                {
+                    config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                });
         }
 
 
@@ -53,6 +64,11 @@ namespace com.mytube.mini.web
             IHostingEnvironment env,
             ILoggerFactory factory)
         {
+
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<VideoViewModel, Video>().ReverseMap();
+            });
 
             if (env.IsEnvironment("Development"))
             {

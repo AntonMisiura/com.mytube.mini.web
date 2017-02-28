@@ -1,14 +1,11 @@
-﻿using System.Collections.Generic;
-using com.mytube.mini.core.Entities;
-using System.Linq;
+﻿using com.mytube.mini.core.Entities;
 
 namespace com.mytube.mini.impl.EF.Repo
 {
-    public class VideoRepository : AbstractRepository, IRepository<Video>
+    public class VideoRepository : Repository<Video>
     {
-        public IEnumerable<Video> GetAll()
+        public VideoRepository(TubeContext context) : base(context)
         {
-            return context.Videos.ToList();
         }
     }
 }

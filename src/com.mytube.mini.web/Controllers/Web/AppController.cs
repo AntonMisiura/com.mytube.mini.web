@@ -11,18 +11,15 @@ namespace com.mytube.mini.web.Controllers.Web
     public class AppController : Controller
     {
         private ILogger<AppController> _logger;
-        private ITubeRepository _repository;
         private IConfigurationRoot _config;
         private IMailService _mailService;
 
         public AppController(IMailService mailService,
             IConfigurationRoot config,
-            ITubeRepository repository,
             ILogger<AppController> logger)
         {
             _mailService = mailService;
             _config = config;
-            _repository = repository;
             _logger = logger;
         }
 
@@ -30,11 +27,11 @@ namespace com.mytube.mini.web.Controllers.Web
         {
             try
             {
-                var videos = _repository.GetAllVideos();
-                var users = _repository.GetAllUsers();
-                var ratings = _repository.GetAllRatings();
+                //var videos = _repository.GetAllVideos();
+                //var users = _repository.GetAllUsers();
+                //var ratings = _repository.GetAllRatings();
 
-                return View(videos);
+               return View();
             }
             catch (Exception ex)
             {

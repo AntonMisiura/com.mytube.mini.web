@@ -1,14 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using com.mytube.mini.core.Entities;
+﻿using com.mytube.mini.core.Entities;
 
 namespace com.mytube.mini.impl.EF.Repo
 {
-    public class RatingRepository : AbstractRepository, IRepository<Rating>
+    public class RatingRepository : Repository<Rating>
     {
-        public IEnumerable<Rating> GetAll()
+        public RatingRepository(TubeContext context) : base(context)
         {
-            return context.Ratings.ToList();
         }
     }
 }

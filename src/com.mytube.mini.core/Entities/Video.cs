@@ -1,8 +1,9 @@
 ﻿using System;
+using com.mytube.mini.core.Contracts;
 
 namespace com.mytube.mini.core.Entities
 {
-    public class Video
+    public class Video : IEntity
     {
         public int Id { get; set; }
         public int UserId { get; set; }

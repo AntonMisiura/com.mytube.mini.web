@@ -1,8 +1,9 @@
 ﻿using System;
+using com.mytube.mini.core.Contracts;
 
 namespace com.mytube.mini.core.Entities
 {
-    public class User
+    public class User : IEntity
     {
         public int Id { get; set; }
         public string Login { get; set; }
