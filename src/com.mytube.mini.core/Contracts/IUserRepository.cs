@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using com.mytube.mini.core.Entities;
+﻿using com.mytube.mini.core.Entities;
 
 namespace com.mytube.mini.core.Contracts
 {

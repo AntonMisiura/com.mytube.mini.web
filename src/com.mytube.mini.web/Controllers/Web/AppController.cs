@@ -27,6 +27,7 @@ namespace com.mytube.mini.web.Controllers.Web
         {
             try
             {
+                //TODO GET ALL
                 //var videos = _repository.GetAllVideos();
                 //var users = _repository.GetAllUsers();
                 //var ratings = _repository.GetAllRatings();
