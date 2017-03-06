@@ -3,42 +3,35 @@ using com.mytube.mini.web.Services;
 using com.mytube.mini.web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace com.mytube.mini.web.Controllers.Web
 {
     public class AppController : Controller
     {
-        private ILogger<AppController> _logger;
         private IConfigurationRoot _config;
         private IMailService _mailService;
+        private IUserRepository _userRepository;
 
         public AppController(IMailService mailService,
             IConfigurationRoot config,
-            ILogger<AppController> logger)
+            IUserRepository userRepository )
         {
             _mailService = mailService;
             _config = config;
-            _logger = logger;
+            _userRepository = userRepository;
         }
 
         public IActionResult Index()
         {
-            try
-            {
-                //TODO GET ALL
-                //var videos = _repository.GetAllVideos();
-                //var users = _repository.GetAllUsers();
-                //var ratings = _repository.GetAllRatings();
+            return View();
+        }
 
-               return View();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Failed!!{ex.Message}");
-                return Redirect("/error");
-            }
+        [Authorize]
+        public IActionResult Users()
+        {
+            var users = _userRepository.GetAll();
+            return View(users);
         }
 
         public IActionResult Login()
@@ -66,17 +59,17 @@ namespace com.mytube.mini.web.Controllers.Web
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Login(SigninViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                _mailService.SendMail(_config["MailSettings:ToAddress"], model.Email, "From Mytube", model.Message);
+        //[HttpPost]
+        //public IActionResult Login(SigninViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _mailService.SendMail(_config["MailSettings:ToAddress"], model.Email, "From Mytube", model.Message);
 
-                ModelState.Clear();
-            }
+        //        ModelState.Clear();
+        //    }
 
-            return View();
-        }
+        //    return View();
+        //}
     }
 }

@@ -30,13 +30,13 @@
 
             <div class="form-group">
                 <label asp-for="Password">Password</label>
-                <input asp-for="Password" class="form-control" />
+                <input type="password" asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-muted"></span>
             </div>
 
             <div>
                 <a asp-controller="App" asp-action="Index" class="btn btn-default btn-lg">Cancel</a>
-                <input type="submit" value="Log In" class="btn btn-warning btn-lg" />
+                <input asp-controller="User" asp-action="Login"  type="submit" value="Log In" class="btn btn-warning btn-lg" />
             </div>
         </form>
     </div>
