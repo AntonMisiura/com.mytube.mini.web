@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using com.mytube.mini.core.Contracts;
 using com.mytube.mini.core.Entities;
-using com.mytube.mini.impl.EF.Repo;
 using com.mytube.mini.web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -51,7 +50,7 @@ namespace com.mytube.mini.web.Controllers.Api
 
                 if (await _repository.SaveChangesAsync())
                 {
-                    return Created($"api/video/{video.Name}", Mapper.Map<VideoViewModel>(newVideo));
+                    return Created($"api/videos/{video.Name}", Mapper.Map<VideoViewModel>(newVideo));
                 }
 
             }

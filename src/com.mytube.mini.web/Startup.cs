@@ -89,6 +89,12 @@ namespace com.mytube.mini.web
                     template: "{controller}/{action}/{id?}",
                     defaults: new { controller = "App", action = "Index" }
                     );
+
+                config.MapRoute(
+                    name: "log",
+                    template: "User/Login/{id?}",
+                    defaults: new { controller = "User", action = "Login" }
+                    );
             });
         }
     }

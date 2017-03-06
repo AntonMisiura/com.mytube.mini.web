@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace com.mytube.mini.core.Contracts
 {
     public interface IRepository<T>
     {
-        T GetById(int id);
+        Task<T> GetById(int id);
 
-        IEnumerable<T> GetAll();
+        Task<IEnumerable<T>> GetAll(CancellationToken token);
 
-        void Add(T t);
+        Task Add(T t);
 
-        Task<bool> SaveChangesAsync();
+        Task<bool> Save();
     }
 }

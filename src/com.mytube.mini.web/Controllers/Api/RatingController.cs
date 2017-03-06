@@ -1,6 +1,8 @@
-﻿using com.mytube.mini.core.Contracts;
+﻿using System.Threading.Tasks;
+using AutoMapper;
+using com.mytube.mini.core.Contracts;
 using com.mytube.mini.core.Entities;
-using com.mytube.mini.impl.EF.Repo;
+using com.mytube.mini.web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace com.mytube.mini.web.Controllers.Api
@@ -22,9 +24,21 @@ namespace com.mytube.mini.web.Controllers.Api
         }
 
         [HttpPost("")]
-        public IActionResult Post([FromBody] Rating rating)
+        public async Task<IActionResult> Post([FromBody] Rating rating)
         {
-            return Ok(true);
+            if (ModelState.IsValid)
+            {
+                var newRating = Mapper.Map<Rating>(rating);
+                _repository.Add(newRating);
+
+                if (await _repository.SaveChangesAsync())
+                {
+                    return Created($"api/ratings/{rating.Mark}", Mapper.Map<RatingViewModel>(newRating));
+                }
+
+            }
+
+            return BadRequest("ERROR!");
         }
     }
 }

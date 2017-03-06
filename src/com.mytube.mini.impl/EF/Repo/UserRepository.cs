@@ -1,6 +1,8 @@
 ﻿using com.mytube.mini.core.Contracts;
 using com.mytube.mini.core.Entities;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace com.mytube.mini.impl.EF.Repo
 {
@@ -11,9 +13,9 @@ namespace com.mytube.mini.impl.EF.Repo
         }
 
 
-        public User GetByLogin(string login)
+        public async Task<User> GetByLogin(string login)
         {
-            return Context.Set<User>().FirstOrDefault(e => e.Login == login);
+            return await Context.Set<User>().FirstOrDefaultAsync(e => e.Login == login);
         }
     }
 }

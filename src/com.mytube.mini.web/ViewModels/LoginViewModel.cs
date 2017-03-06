@@ -9,7 +9,7 @@ namespace com.mytube.mini.web.ViewModels
         public string Login { get; set; }
 
         [Required]
-        [StringLength(4096, MinimumLength = 10)]
+        [StringLength(4096, MinimumLength = 2)]
         public string Password { get; set; }
     }
 }

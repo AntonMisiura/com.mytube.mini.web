@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using com.mytube.mini.core.Contracts;
+using Microsoft.EntityFrameworkCore;
 
 namespace com.mytube.mini.impl.EF.Repo
 {
@@ -14,24 +17,24 @@ namespace com.mytube.mini.impl.EF.Repo
             Context = context;
         }
 
-        public T GetById(int id)
+        public async Task<T> GetById(int id)
         {
-            return Context.Set<T>().FirstOrDefault(e => e.Id == id);
+            return await Context.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
         }
 
-        public IEnumerable<T> GetAll()
+        public async Task<IEnumerable<T>> GetAll(CancellationToken token)
         {
-            return Context.Set<T>().ToList();
+            return await Context.Set<T>().ToListAsync(token);
         }
 
-        public void Add(T t)
+        public Task Add(T t)
         {
-            throw new System.NotImplementedException();
+            return Task.FromResult(Context.Add(t));
         }
 
-        public Task<bool> SaveChangesAsync()
+        public async Task<bool> Save()
         {
-            throw new System.NotImplementedException();
+            return await Context.SaveChangesAsync() > 0;
         }
     }
 }

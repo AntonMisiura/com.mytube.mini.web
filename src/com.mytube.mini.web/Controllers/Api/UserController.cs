@@ -1,36 +1,50 @@
-﻿using com.mytube.mini.core.Contracts;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using com.mytube.mini.core.Contracts;
 using com.mytube.mini.core.Entities;
-using com.mytube.mini.impl.EF.Repo;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace com.mytube.mini.web.Controllers.Api
 {
     [Route("api/users")]
-    public class UserController : Controller
+    public class UserController : ApiController
     {
+        protected override string Tag => nameof(UserController);
+
         private IUserRepository _repository;
 
-        public UserController(IUserRepository repository)
+
+        public UserController(
+            ILogger<ApiController> logger,
+            IUserRepository repository)
+            : base(logger)
         {
             _repository = repository;
         }
 
         [HttpGet("")]
-        public IActionResult Get()
+        public async Task<IActionResult> GetAll(CancellationToken token)
         {
-            return Ok(_repository.GetAll());
+            return await HandleAjaxCall(()=>_repository.GetAll(token));
         }
 
         [HttpGet("{id:int}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(CancellationToken token, int id)
         {
-            return Ok(_repository.GetById(id));
+            return await HandleAjaxCall(() => _repository.GetById(id));
         }
 
         [HttpPost("")]
-        public IActionResult Post([FromBody] User user)
+        public async Task<IActionResult> Add([FromBody] User user)
         {
-            return Ok(true);
+            return await HandleAjaxCall(async() =>
+            {
+                await _repository.Add(user);
+                await _repository.Save();
+                return user;
+            });
+
         }
 
         [HttpPost("login")]
@@ -47,7 +61,7 @@ namespace com.mytube.mini.web.Controllers.Api
                 return Ok("Logged in");
             }
 
-            return Ok("Bye!");
+            return View();
         }
     }
 }
