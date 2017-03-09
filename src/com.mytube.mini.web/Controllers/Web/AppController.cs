@@ -1,4 +1,5 @@
-﻿using com.mytube.mini.core.Contracts;
+﻿using System.Threading;
+using com.mytube.mini.core.Contracts;
 using com.mytube.mini.web.Services;
 using com.mytube.mini.web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,7 @@ namespace com.mytube.mini.web.Controllers.Web
 {
     public class AppController : Controller
     {
+        private CancellationToken _token;
         private IConfigurationRoot _config;
         private IMailService _mailService;
         private IUserRepository _userRepository;
@@ -30,7 +32,7 @@ namespace com.mytube.mini.web.Controllers.Web
         [Authorize]
         public IActionResult Users()
         {
-            var users = _userRepository.GetAll();
+            var users = _userRepository.GetAll(_token);
             return View(users);
         }
 

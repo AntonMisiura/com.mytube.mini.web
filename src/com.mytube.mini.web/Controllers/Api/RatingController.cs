@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using com.mytube.mini.core.Contracts;
 using com.mytube.mini.core.Entities;
@@ -18,20 +19,20 @@ namespace com.mytube.mini.web.Controllers.Api
         }
 
         [HttpGet("")]
-        public IActionResult Get()
+        public IActionResult Get(CancellationToken token)
         {
-            return Ok(_repository.GetAll());
+            return Ok(_repository.GetAll(token));
         }
 
         [HttpPost("")]
-        public async Task<IActionResult> Post([FromBody] Rating rating)
+        public async Task<IActionResult> Post(CancellationToken token, [FromBody] Rating rating)
         {
             if (ModelState.IsValid)
             {
                 var newRating = Mapper.Map<Rating>(rating);
-                _repository.Add(newRating);
+                await _repository.Add(token, newRating);
 
-                if (await _repository.SaveChangesAsync())
+                if (await _repository.Save(token))
                 {
                     return Created($"api/ratings/{rating.Mark}", Mapper.Map<RatingViewModel>(newRating));
                 }

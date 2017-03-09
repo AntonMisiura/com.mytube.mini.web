@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using com.mytube.mini.core.Contracts;
@@ -17,7 +15,7 @@ namespace com.mytube.mini.impl.EF.Repo
             Context = context;
         }
 
-        public async Task<T> GetById(int id)
+        public async Task<T> GetById(CancellationToken token, int id)
         {
             return await Context.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
         }
@@ -27,12 +25,12 @@ namespace com.mytube.mini.impl.EF.Repo
             return await Context.Set<T>().ToListAsync(token);
         }
 
-        public Task Add(T t)
+        public Task Add(CancellationToken token, T t)
         {
             return Task.FromResult(Context.Add(t));
         }
 
-        public async Task<bool> Save()
+        public async Task<bool> Save(CancellationToken token)
         {
             return await Context.SaveChangesAsync() > 0;
         }
