@@ -3,12 +3,11 @@
 /**
  *
  */
-tubeApp.controller('headerCtrl', function($scope, $state) {
+tubeApp.controller('headerController', function($scope, $state) {
 
     $scope.menu = [
-        { name: 'My Videos', path: 'videos' },
-        { name: 'Editor', path: '' },
-        { name: 'Help', path: 'help' },
+        { name: "My Videos", path: "videos" },
+        { name: "Help", path: "help" }
     ];
 
     $scope.go = function (page) {
@@ -28,10 +27,3 @@ tubeApp.controller('headerCtrl', function($scope, $state) {
     }
 });
 
-tubeApp.controller('myvideoCtrl', function($scope) {
-    $scope.imagePath = 'img/washedout.png';
-});
-
-tubeApp.controller('helpCtrl', function ($scope) {
-
-});

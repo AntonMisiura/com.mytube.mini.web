@@ -1,10 +1,7 @@
-﻿using AutoMapper;
-using com.mytube.mini.core.Contracts;
+﻿using com.mytube.mini.core.Contracts;
 using com.mytube.mini.core.Entities;
 using com.mytube.mini.impl.EF;
 using com.mytube.mini.impl.EF.Repo;
-using com.mytube.mini.web.Services;
-using com.mytube.mini.web.ViewModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -36,14 +33,14 @@ namespace com.mytube.mini.web
         {
             services.AddSingleton(_config);
 
-            if(_env.IsEnvironment("Development") || _env.IsEnvironment("Testing"))
-            {
-                services.AddScoped<IMailService, MailService>();
-            }
-            else
-            {
-                //implementing a real mail service
-            }
+            //if(_env.IsEnvironment("Development") || _env.IsEnvironment("Testing"))
+            //{
+            //    services.AddScoped<IMailService, MailService>();
+            //}
+            //else
+            //{
+            //    //implementing a real mail service
+            //}
 
             services.AddDbContext<TubeContext>();
 
@@ -65,20 +62,22 @@ namespace com.mytube.mini.web
             ILoggerFactory factory)
         {
 
-            Mapper.Initialize(config =>
-            {
-                config.CreateMap<VideoViewModel, Video>().ReverseMap();
-            });
+            //Mapper.Initialize(config =>
+            //{
+            //    config.CreateMap<VideoViewModel, Video>().ReverseMap();
+            //});
 
-            if (env.IsEnvironment("Development"))
-            {
-                app.UseDeveloperExceptionPage();
-                factory.AddDebug(LogLevel.Information);
-            }
-            else
-            {
-                factory.AddDebug(LogLevel.Error);
-            }
+            //if (env.IsEnvironment("Development"))
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //    factory.AddDebug(LogLevel.Information);
+            //}
+            //else
+            //{
+            //    factory.AddDebug(LogLevel.Error);
+            //}
+
+            app.UseDefaultFiles();
 
             app.UseStaticFiles();
 

@@ -1,4 +1,4 @@
-﻿<div layout="row" ng-controller="headerCtrl">
+﻿<div layout="row" ng-controller="headerController">
     <md-toolbar class="md-hue-2" ng-hide="user.logined">
         <div class="md-toolbar-tools">
             <md-button class="md-icon-button" aria-label="Settings">
@@ -10,21 +10,24 @@
             <div flex></div>
             <div flex="20">
                 <md-button class="" ng-click="login()"> Войти </md-button>
-                <md-button class="md-raised md-accent"> Регистрация </md-button>
-            </div>
-            <div flex="10">
+
+                <div ng-controller="registerController as ctrl" layout="column" style="display:inline;" ng-cloak>
+                    <md-button ng-click="ctrl.openDialog($event)" class="md-raised md-accent"> Регистрация </md-button>
+                </div>
+                </div>
+            <div flex="5">
             </div>
         </div>
     </md-toolbar>
     <md-toolbar class="md-hue-2" ng-show="user.logined">
         <div class="md-toolbar-tools">
             <md-button class="md-icon-button" aria-label="Settings">
-                <md-icon md-font-icon="angular-material" style="color: cadetblue;">video_library</md-icon>
+                <md-icon md-font-icon="angular-material" style="color: lightgreen;">video_library</md-icon>
             </md-button>
 
             <h2 flex md-truncate>Microtube</h2>
 
-            <div flex="70" layout-align="end center" class="lm-dark">
+            <div flex="75" layout-align="end center" class="lm-dark">
                 <md-tabs md-selected="selPage" md-center-tabs="false" md-border-bottom>
                     <md-tab ng-repeat="t in menu" md-on-select="go(t.path)">
                         <md-tab-label>{{t.name}}</md-tab-label>
@@ -33,12 +36,17 @@
             </div>
 
             <md-button class="md-icon-button" aria-label="Favorite">
-                <md-icon md-font-icon="angular-material" style="color: greenyellow;">favorite</md-icon>
+                <md-icon md-font-icon="angular-material" style="color:lightgreen;">favorite</md-icon>
             </md-button>
 
-            <md-button class="md-icon-button" aria-label="More" ng-click="logout()">
-                <md-icon md-font-icon="angular-material">more</md-icon>
+            <md-button class="md-icon-button" aria-label="Account" ng-click="go('userpage')">
+                <md-icon md-font-icon="angular-material" style="color: lightgreen;">account_circle</md-icon>
             </md-button>
+
+            <md-button class="md-icon-button" aria-label="Down" ng-click="logout()">
+                <md-icon md-font-icon="angular-material" style="color: lightgreen;">keyboard_arrow_down</md-icon>
+            </md-button>
+
         </div>
     </md-toolbar>
 </div>

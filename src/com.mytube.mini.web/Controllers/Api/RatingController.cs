@@ -1,45 +1,51 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
 using com.mytube.mini.core.Contracts;
 using com.mytube.mini.core.Entities;
-using com.mytube.mini.web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace com.mytube.mini.web.Controllers.Api
 {
     [Route("api/rating")]
-    public class RatingController : Controller
+    public class RatingController : ApiController
     {
+        protected override string Tag => nameof(RatingController);
+
         private IRepository<Rating> _repository;
 
-        public RatingController(IRepository<Rating> repository)
+
+        public RatingController(
+            IRepository<Rating> repository,
+            ILogger<ApiController> logger)
+            : base(logger)
         {
             _repository = repository;
         }
 
         [HttpGet("")]
-        public IActionResult Get(CancellationToken token)
+        public async Task<IActionResult> GetAll(CancellationToken token)
         {
-            return Ok(_repository.GetAll(token));
+            return await HandleAjaxCall(() => _repository.GetAll(token));
+        }
+
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetById(CancellationToken token, int id)
+        {
+            return await HandleAjaxCall(() => _repository.GetById(token, id));
         }
 
         [HttpPost("")]
-        public async Task<IActionResult> Post(CancellationToken token, [FromBody] Rating rating)
+        public async Task<IActionResult> AddRating(CancellationToken token, [FromBody] Rating rating)
         {
-            if (ModelState.IsValid)
+            return await HandleAjaxCall(async () =>
             {
-                var newRating = Mapper.Map<Rating>(rating);
-                await _repository.Add(token, newRating);
-
-                if (await _repository.Save(token))
-                {
-                    return Created($"api/ratings/{rating.Mark}", Mapper.Map<RatingViewModel>(newRating));
-                }
-
-            }
-
-            return BadRequest("ERROR!");
+                await _repository.Add(token, rating);
+                await _repository.Save(token);
+                return rating;
+            });
         }
+
     }
 }

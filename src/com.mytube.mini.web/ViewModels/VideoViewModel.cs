@@ -1,14 +1,14 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿//using System;
+//using System.ComponentModel.DataAnnotations;
 
-namespace com.mytube.mini.web.ViewModels
-{
-    public class VideoViewModel
-    {
-        [Required]
-        [StringLength(16, MinimumLength = 5)]
-        public string Name { get; set; }
+//namespace com.mytube.mini.web.ViewModels
+//{
+//    public class VideoViewModel
+//    {
+//        [Required]
+//        [StringLength(16, MinimumLength = 5)]
+//        public string Name { get; set; }
 
-        public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
-    }
-}
+//        public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
+//    }
+//}
