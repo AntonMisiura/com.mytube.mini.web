@@ -4,6 +4,10 @@
         angular.element(document.querySelector("#fileInput")).click();
     };
 
+    //$scope.videos = [];
+    //videosRepo.all().then(function(r) {
+    //    $scope.videos = r.data;
+    //});
 
     //videosRepo.add().then(function (r) {
     //    $scope.status = "Inserted Customer! Refreshing customer list.";
