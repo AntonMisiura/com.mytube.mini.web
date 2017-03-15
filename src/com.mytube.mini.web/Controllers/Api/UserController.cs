@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using com.mytube.mini.core.Contracts;
 using com.mytube.mini.core.Entities;
@@ -53,12 +54,14 @@ namespace com.mytube.mini.web.Controllers.Api
                 return NotFound("User doesn't exist");
 
             var dbUser = await _repository.GetByLogin(token, user.Login);
-            if (user.Password == dbUser.Password)
+            if (PasswordHash.PasswordHash.ValidatePassowrd(user.Password, dbUser.Password))
             {
-                return Ok("Logged in");
+                // TODO: Generate token and return it to client, for now return just user
+                dbUser.Password = string.Empty;
+                return Ok(dbUser);
             }
 
-            return View();
+            return BadRequest();
         }
     }
 }

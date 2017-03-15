@@ -8,11 +8,11 @@
             <h2 flex md-truncate>Microtube</h2>
 
             <div flex></div>
-            <div flex="20">
-                <md-button class="" ng-click="login()"> Войти </md-button>
+            <div flex="20" >
+                <md-button class="" ng-click="login($event)"> Войти </md-button>
 
-                <div ng-controller="registerController as ctrl" layout="column" style="display:inline;" ng-cloak>
-                    <md-button ng-click="ctrl.openDialog($event)" class="md-raised md-accent"> Регистрация </md-button>
+                <div layout="column" style="display:inline;">
+                    <md-button ng-click="register($event)" class="md-raised md-accent"> Регистрация </md-button>
                 </div>
                 </div>
             <div flex="5">
@@ -35,12 +35,13 @@
                 </md-tabs>
             </div>
 
-            <md-button class="md-icon-button" aria-label="Favorite">
-                <md-icon md-font-icon="angular-material" style="color:lightgreen;">favorite</md-icon>
+            <md-button class="md-icon-button" aria-label="Queue">
+                <md-icon md-font-icon="angular-material" style="color:lightgreen;">queue</md-icon>
             </md-button>
 
-            <md-button class="md-icon-button" aria-label="Account" ng-click="go('userpage')">
+            <md-button class="" aria-label="Account" ng-click="go('userpage')">
                 <md-icon md-font-icon="angular-material" style="color: lightgreen;">account_circle</md-icon>
+                {{user.name}}
             </md-button>
 
             <md-button class="md-icon-button" aria-label="Down" ng-click="logout()">

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using com.mytube.mini.core.Contracts;
@@ -27,6 +28,13 @@ namespace com.mytube.mini.impl.EF.Repo
 
         public Task Add(CancellationToken token, T t)
         {
+            var creatable = t as IEntityCreatable;
+            if (creatable != null)
+            {
+                creatable.Create();
+                creatable.CreatedDate = DateTime.UtcNow;
+            }
+
             return Task.FromResult(Context.Add(t));
         }
 

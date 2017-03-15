@@ -45,6 +45,7 @@ namespace com.mytube.mini.web
             services.AddDbContext<TubeContext>();
 
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IVideoRepository, VideoRepository>();
             services.AddTransient<IRepository<Video>, Repository<Video>>();
             services.AddTransient<IRepository<Rating>, Repository<Rating>>();
 

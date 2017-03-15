@@ -1,32 +1,32 @@
 ﻿
-<md-dialog aria-label="Autocomplete Dialog Example">
+<md-dialog ng-controller="regUserController" aria-label="Autocomplete Dialog Example">
 
     <md-toolbar>
         <div class="md-toolbar-tools">
             <h2>Sign in dialog</h2>
             <span flex></span>
-            <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+            <md-button class="md-icon-button" ng-click="cancel()">
                 <md-icon md-font-icon="angular-material" aria-label="Close dialog">close</md-icon>
             </md-button>
         </div>
     </md-toolbar>
 
-    <div ng-controller="registerController" layout="column" layout-padding ng-cloak>
+    <div layout="column" layout-padding>
         <br />
         <md-content class="md-no-momentum">
             <md-input-container class="md-block">
                 <md-icon md-font-icon="angular-material" class="name">person_pin</md-icon>
-                <input type="text" placeholder="Name" ng-model="username">
+                <input type="text" placeholder="Name" ng-model="newUser.Name">
             </md-input-container>
 
             <md-input-container class="md-block">
                 <md-icon md-font-icon="angular-material" class="login">supervisor_account</md-icon>
-                <input type="text" placeholder="Login" ng-required="true" ng-model="login">
+                <input type="text" placeholder="Login" ng-required="true" ng-model="newUser.Login">
             </md-input-container>
 
             <md-input-container class="md-block">
                 <md-icon md-font-icon="angular-material" class="password">vpn_key</md-icon>
-                <input type="password" placeholder="Password" ng-required="true" ng-model="password">
+                <input type="password" placeholder="Password" ng-required="true" ng-model="newUser.Password">
             </md-input-container>
 
             <md-input-container md-no-float class="md-block">
@@ -35,10 +35,11 @@
 
         </md-content>
 
+
+        <md-dialog-actions>
+            <md-button aria-label="Finished" ng-click="regUser()" class="md-raised md-accent">Sign in</md-button>
+        </md-dialog-actions>
     </div>
 
-    <md-dialog-actions>
-        <md-button aria-label="Finished" ng-click="ctrl.finish($event)" class="md-raised md-accent">Sign in</md-button>
-    </md-dialog-actions>
 </md-dialog>
 

@@ -1,54 +1,26 @@
-﻿(function () {
-    "use strict";
-    tubeApp
-        .controller("registerController", registerCtrl);
+﻿"use strict";
 
-    //tubeApp.controller("registerController", function($scope, usersRepo) {
+tubeApp.controller("regUserController", function ($scope, usersRepo, $mdDialog) {
 
-    //$scope.addUser = function () {
-    //    var name = $scope.username;
-    //    var login = $scope.login;
-    //    var password = $scope.password;
-    //    console.log("name :" + name + "login : " + login + "password : " + password);
+    // The new user
+    $scope.newUser = {
+        Login: '',
+        Name: '',
+        Password: ''
+    };
 
-    //    $scope.users = [];
-    //    var user = {
-    //        Name: username,
-    //        Login: login,
-    //        Password: password
-    //    };
+    $scope.regUser = function() {
 
-    //    //usersRepo.add(user).then(function (r) {
-    //    //    $scope.users.push(user);
-    //    //});
+        // validate user
+        //if (!$scope.newUser.Login) alert();
 
-
-    //};
-    //});
-
-    function registerCtrl ($mdDialog) {
-        var self = this;
-
-        self.openDialog = function ($event) {
-            $mdDialog.show({
-                controller: dialogCtrl,
-                controllerAs: "ctrl",
-                templateUrl: "views/dialogs/register.html",
-                parent: tubeApp.element,
-                targetEvent: $event,
-                clickOutsideToClose: true
-            });
-        }
-    }
-
-    function dialogCtrl($timeout, $q, $scope, $mdDialog) {
-        var self = this;
-
-        self.cancel = function ($event) {
-            $mdDialog.cancel();
-        };
-        self.finish = function ($event) {
+        usersRepo.add($scope.newUser).then(function (r) {
+            // register success, redirect to home page
             $mdDialog.hide();
-        };
-    }
-})();
+        });
+    };
+
+    $scope.cancel = function ($event) {
+        $mdDialog.cancel();
+    };
+});

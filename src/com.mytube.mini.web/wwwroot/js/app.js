@@ -7,5 +7,6 @@
     'ui.bootstrap',
     'ui.router',
     'toastr',
-    'angular-loading-bar'
+    'angular-loading-bar',
+    'lfNgMdFileInput'
 ]);

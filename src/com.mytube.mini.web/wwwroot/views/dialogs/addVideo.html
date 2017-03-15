@@ -1,0 +1,37 @@
+﻿<div ng-controller="addVideoController"> <!--TODO: make dialog work right way-->
+    <md-dialog aria-label="Autocomplete Dialog Example">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Sign in dialog</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-font-icon="angular-material" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <form name="addingVideoForm">
+            <div layout="row" layout-padding layout-wrap layout-fill>
+                <md-content class="md-no-momentum">
+                    <md-input-container class="md-block" aria-label="Subscriptions">
+                        <md-icon md-font-icon="angular-material" class="name">subscriptions</md-icon>
+                        <input type="text" placeholder="Name" class="videonameInput" ng-required="true" ng-model="video.Name">
+                    </md-input-container>
+                </md-content>
+            </div>
+            <div layout="row" layout-padding layout-wrap layout-fill>
+                <md-content class="md-no-momentum">
+                    <md-input-container class="md-block">
+                        <lf-ng-md-file-input lf-files='files' multiple> </lf-ng-md-file-input>
+                    </md-input-container>
+                </md-content>
+
+                <md-content class="md-no-momentum">
+                    <md-input-container class="md-block">
+                        <input id="fileInput" type="file" aria-label="Load" ng-model="video.path">
+                        <md-button class="md-raised md-accent" ng-click="addVideo(video)">Add Video</md-button>
+                    </md-input-container>
+                </md-content>
+            </div>
+        </form>
+    </md-dialog>
+</div>

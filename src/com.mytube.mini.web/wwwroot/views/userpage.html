@@ -1,58 +1,77 @@
-﻿
+﻿<div ng-controller="userpageController">
+    <div layout="row" layout-padding layout-wrap layout-fill ng-cloak>
 
-<div layout="row" layout-padding layout-wrap layout-fill ng-cloak>
+        <md-whiteframe class="md-whiteframe" flex-sm="45" flex-gt-sm="35" flex-gt-md="20" layout layout-align="center center" ng-repeat="v in videos">
+            <p>{{v.name}}</p>
+            <span>
+                <video flex-sm="80" flex-gt-sm="80" flex-gt-md="80" controls ng-click="go('')">
+                    <source ng-src="{{r.getPath(v)}}" type="video/mp4">
+                </video>
+            </span>
 
-    <md-whiteframe class="md-whiteframe" flex-sm="45" flex-gt-sm="35" flex-gt-md="20" layout layout-align="center center" ng-repeat="v in videos">
-        <p>{{v.name}}</p>
-        <span>
-            <video flex-sm="80" flex-gt-sm="80" flex-gt-md="80" controls>
-                <source src="./vid/video.mp4" type="video/mp4">
-            </video>
-        </span>
+            <md-button class="md-icon-button" aria-label="Favorite">
+                <md-icon md-font-icon="angular-material" class="like">favorite</md-icon>
+            </md-button>
+        </md-whiteframe>
+    </div>
 
-        <md-button class="md-icon-button" aria-label="Favorite">
-            <md-icon md-font-icon="angular-material" class="like">favorite</md-icon>
-        </md-button>
-    </md-whiteframe>
+    <form name="addingVideoForm" >
+        <div layout="row" layout-padding layout-wrap layout-fill>
+            <md-content class="md-no-momentum">
+                <md-input-container class="md-block" aria-label="Subscriptions">
+                    <md-icon md-font-icon="angular-material" class="name">subscriptions</md-icon>
+                    <input type="text" placeholder="Name" class="videonameInput" ng-required="true" ng-model="video.Name">
+                </md-input-container>
+            </md-content>
+        </div>
+
+        <!--<div layout="row" layout-padding layout-wrap layout-fill>
+            <md-content class="md-no-momentum">
+                <md-input-container class="md-block" aria-label="Comment">
+                    <md-icon md-font-icon="angular-material" class="comment">comment</md-icon>
+                    <textarea placeholder="Comment" md-select-on-focus class="commentArea"></textarea>
+                </md-input-container>
+            </md-content>
+        </div>
+
+        <div layout="row" layout-padding layout-wrap layout-fill>
+            <md-content class="md-no-momentum">
+                <md-input-container class="md-block">
+                    <input id="fileInput" type="file" aria-label="AddScreen" ng-model="screenPath">
+                    <md-button class="md-primary md-hue-2" ng-click="upload()" style="background: burlywood">Add Screen</md-button>
+                </md-input-container>
+            </md-content>
+        </div>-->
+
+        <div layout="row" layout-padding layout-wrap layout-fill>
+            <!--<div class="fileinput fileinput-new" data-provides="fileinput">
+            <div class="fileinput-preview fileupload-exists thumbnail" data-trigger="fileinput" style="width: 170px; height: 150px;">
+                <img ng-src="{{avatarUrl()}}" alt="">
+            </div>
+            <div>
+                <span class="btn btn-default btn-sm btn-file">
+                    <span class="fileinput-new">Выбрать</span>
+                    <span class="fileinput-exists">Изменить</span>
+                    <input type="file" name="file" file-model="files.avatar">
+                </span>
+                <a href="" class="btn btn-default btn-sm fileinput-exists" data-dismiss="fileinput">удалить</a>
+            </div>
+        </div>-->
+
+            <md-content class="md-no-momentum">
+                <md-input-container class="md-block">
+                    <lf-ng-md-file-input lf-files='files' multiple> </lf-ng-md-file-input>
+                </md-input-container>
+            </md-content>
+
+            <md-content class="md-no-momentum">
+                <md-input-container class="md-block">
+                    <input id="fileInput" type="file" aria-label="Load" ng-model="video.path">
+                    <md-button class="md-primary md-hue-2" ng-click="upload()" style="background: burlywood">Load Video</md-button>
+                    <md-button class="md-raised md-accent" ng-click="addVideo(video)">Add Video</md-button>
+                </md-input-container>
+            </md-content>
+        </div>
+
+    </form>
 </div>
-
-
-<form name="addingVideoForm"  ng-controller="userpageController">
-    <div layout="row" layout-padding layout-wrap layout-fill>
-        <md-content class="md-no-momentum">
-            <md-input-container class="md-block" aria-label="Subscriptions">
-                <md-icon md-font-icon="angular-material" class="videoname">subscriptions</md-icon>
-                <input type="text" placeholder="Name" class="videonameInput" ng-required="true" ng-model="name">
-            </md-input-container>
-        </md-content>
-    </div>
-
-    <!--<div layout="row" layout-padding layout-wrap layout-fill>
-        <md-content class="md-no-momentum">
-            <md-input-container class="md-block" aria-label="Comment">
-                <md-icon md-font-icon="angular-material" class="comment">comment</md-icon>
-                <textarea placeholder="Comment" md-select-on-focus class="commentArea"></textarea>
-            </md-input-container>
-        </md-content>
-    </div>
-
-    <div layout="row" layout-padding layout-wrap layout-fill>
-        <md-content class="md-no-momentum">
-            <md-input-container class="md-block">
-                <input id="fileInput" type="file" aria-label="AddScreen" ng-model="screenPath">
-                <md-button class="md-primary md-hue-2" ng-click="upload()" style="background: burlywood">Add Screen</md-button>
-            </md-input-container>
-        </md-content>
-    </div>-->
-
-    <div layout="row" layout-padding layout-wrap layout-fill>
-        <md-content class="md-no-momentum">
-            <md-input-container class="md-block">
-                <input id="fileInput" type="file" aria-label="Load" ng-model="filePath">
-                <md-button class="md-primary md-hue-2" ng-click="upload()" style="background: burlywood">Load Video</md-button>
-                <md-button class="md-raised md-accent" ng-click="addVideo()">Add Video</md-button>
-            </md-input-container>
-        </md-content>
-    </div>
-
-</form>

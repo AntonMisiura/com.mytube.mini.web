@@ -46,10 +46,6 @@ tubeApp.factory("BaseRepository", function ($http) {
         },
 
         add: function (entity) {
-            return $http.put(this.baseurl, entity);
-        },
-
-        update: function (entity) {
             return $http.post(this.baseurl, entity);
         },
 
