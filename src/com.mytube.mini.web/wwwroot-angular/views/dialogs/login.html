@@ -1,0 +1,38 @@
+﻿<form name="loginForm">
+    <md-dialog ng-controller="loginNewController" aria-label="Autocomplete Dialog Example">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Sign in dialog</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-font-icon="angular-material" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <div layout="column" layout-padding ng-cloak>
+            <br />
+            <md-content class="md-no-momentum">
+                <md-input-container class="md-block">
+                    <md-icon md-font-icon="angular-material" class="login">supervisor_account</md-icon>
+                    <input type="text" name="login" placeholder="Login"
+                           ng-minlength="3" ng-maxlength="16" ng-required ng-model="user.Login">
+                    <!--<div ng-messages="userForm.login.$error" ng-show="userForm.login.$touched">
+                        <p ng-message="minlength">Login is too short.</p>
+                        <p ng-message="maxlength">Login is too long.</p>
+                        <p ng-message="required">Login is required field.</p>
+                    </div>-->
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <md-icon md-font-icon="angular-material" class="password">vpn_key</md-icon>
+                    <input name="password" type="password" placeholder="Password"
+                           ng-minlength="3" ng-maxlength="25" ng-required ng-model="user.Password">
+                </md-input-container>
+            </md-content>
+        </div>
+        <md-dialog-actions>
+            <md-button aria-label="Finished" ng-click="login()" class="md-raised md-accent">Log in</md-button>
+        </md-dialog-actions>
+    </md-dialog>
+
+</form>

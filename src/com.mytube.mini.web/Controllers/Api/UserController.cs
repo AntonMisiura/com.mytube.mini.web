@@ -15,7 +15,6 @@ namespace com.mytube.mini.web.Controllers.Api
 
         private IUserRepository _repository;
 
-
         public UserController(
             ILogger<ApiController> logger,
             IUserRepository repository)
@@ -56,7 +55,6 @@ namespace com.mytube.mini.web.Controllers.Api
             var dbUser = await _repository.GetByLogin(token, user.Login);
             if (PasswordHash.PasswordHash.ValidatePassowrd(user.Password, dbUser.Password))
             {
-                // TODO: Generate token and return it to client, for now return just user
                 dbUser.Password = string.Empty;
                 return Ok(dbUser);
             }

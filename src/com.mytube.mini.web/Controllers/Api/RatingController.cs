@@ -15,6 +15,15 @@ namespace com.mytube.mini.web.Controllers.Api
         private IRepository<Rating> _repository;
 
 
+        //TODO: HTTP module as a base for logging and exception handling
+        // Add stopwatch
+        // Remove multiple SQL calls
+        // Move to React
+        //autologin
+        //remove async task
+        //talk about httpmodule, that it must do all that doing apicontroller now
+        //remove from constructor repository and logger
+        //private field _repository move to api controller, or create other to do this
         public RatingController(
             IRepository<Rating> repository,
             ILogger<ApiController> logger)

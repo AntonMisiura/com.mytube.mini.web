@@ -10,9 +10,8 @@ namespace com.mytube.mini.core.Contracts
         DateTime CreatedDate { get; set; }
 
         /// <summary>
-        /// Initialize th entity
+        /// Initialize the entity
         /// </summary>
-        /// <returns>True if successfully created otherwise false</returns>
         bool Create();
     }
 }

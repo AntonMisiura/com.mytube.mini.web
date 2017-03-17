@@ -4,5 +4,9 @@
   },
   "ConnectionStrings": {
     "TubeContextConnection": "Server=DESKTOP-MCRK3N9\\MESSUP;Database=MyTube;Trusted_Connection=true;MultipleActiveResultSets=true;"
+  },
+  "PathToVideData": {
+    "VideoDataFolder": "./microtube/videos/"
   }
+
 }

@@ -17,7 +17,7 @@ namespace PasswordHash
             return bytes;
         }
 
-        private static string CreateSalt(int size)
+        private static string CreateSalt(int size)//TODO: something with size, need checking for password length, because user can send to me a lot of symbols
         {
             using (var rng = RandomNumberGenerator.Create())
             {
