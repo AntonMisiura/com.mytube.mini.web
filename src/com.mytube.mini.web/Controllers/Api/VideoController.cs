@@ -17,9 +17,7 @@ namespace com.mytube.mini.web.Controllers.Api
     {
         protected override string Tag => nameof(UserController);
 
-        private IVideoRepository _repository;/// <summary>
-        /// 
-        /// </summary>
+        private IVideoRepository _repository;
         private IConfigurationRoot _config;
 
         public VideoController(

@@ -4,10 +4,12 @@ using com.mytube.mini.impl.EF;
 using com.mytube.mini.impl.EF.Repo;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
+using React.AspNet;
 
 namespace com.mytube.mini.web
 {
@@ -31,16 +33,10 @@ namespace com.mytube.mini.web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton(_config);
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddReact();
 
-            //if(_env.IsEnvironment("Development") || _env.IsEnvironment("Testing"))
-            //{
-            //    services.AddScoped<IMailService, MailService>();
-            //}
-            //else
-            //{
-            //    //implementing a real mail service
-            //}
+            services.AddSingleton(_config);
 
             services.AddDbContext<TubeContext>();
 
@@ -58,25 +54,9 @@ namespace com.mytube.mini.web
         }
 
 
-        public void Configure(IApplicationBuilder app,
-            IHostingEnvironment env,
-            ILoggerFactory factory)
+        public void Configure(IApplicationBuilder app)
         {
-
-            //Mapper.Initialize(config =>
-            //{
-            //    config.CreateMap<VideoViewModel, Video>().ReverseMap();
-            //});
-
-            //if (env.IsEnvironment("Development"))
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //    factory.AddDebug(LogLevel.Information);
-            //}
-            //else
-            //{
-            //    factory.AddDebug(LogLevel.Error);
-            //}
+            app.UseReact(config => { });
 
             app.UseDefaultFiles();
 

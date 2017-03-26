@@ -1,0 +1,40 @@
+﻿<form name="videoPage">
+    <md-dialog id="videoDlgForScroll" ng-controller="videoController" aria-label="Autocomplete Dialog Example">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Video dialog</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-font-icon="angular-material" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-content class="md-no-momentum" layout-padding>
+            <div layout="row" layout-padding layout-wrap layout-fill>
+                <p>{{v.name}}</p>
+                <span>
+                    <video flex-sm="80" flex-gt-sm="80" flex-gt-md="80" controls ng-click="go('')">
+                        <source ng-src="{{r.getPath(v)}}" type="video/mp4">
+                    </video>
+                </span>
+            </div>
+
+            <div layout="row" layout-padding layout-wrap layout-fill>
+                <input-stars max="5" ng-model="videoController.myproperty">{{myproperty}}</input-stars>
+            </div>
+
+            <div layout="row" layout-padding layout-wrap layout-fill>
+                <md-input-container class="md-block" aria-label="Comment">
+                    <md-icon md-font-icon="angular-material" class="comment">comment</md-icon>
+                    <textarea placeholder="Comment" md-select-on-focus class="commentArea"></textarea>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                        <input id="fileInput" type="file" aria-label="Load">
+                        <md-button class="md-raised md-accent" ng-click="">Add Comment</md-button>
+                </md-input-container>
+            </div>
+        </md-content>
+    </md-dialog>
+</form>

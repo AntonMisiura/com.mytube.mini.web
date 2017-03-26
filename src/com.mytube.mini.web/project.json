@@ -21,7 +21,8 @@
     "AutoMapper": "4.2.1",
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
     "com.mytube.mini.core": "1.0.0-*",
-    "com.mytube.mini.impl": "1.0.0-*"
+    "com.mytube.mini.impl": "1.0.0-*",
+    "React.AspNet": "3.0.1"
   },
 
   "tools": {
