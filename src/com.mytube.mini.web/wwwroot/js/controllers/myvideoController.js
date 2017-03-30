@@ -12,11 +12,14 @@
             $scope.status = "Unable to load videos: " + error.message;
         });
 
-    $scope.showVideoPage = function ($event) {
+    $scope.showVideoPage = function ($event, video) {
         var vDlg = $mdDialog.prompt({
             templateUrl: "views/dialogs/video.html",
+            controller: "videoController",
             parent: angular.element(document.body),
-            resolve: {},
+            resolve: {video: function() {
+                return video;
+            }},
             targetEvent: $event,
             clickOutsideToClose: true
         });

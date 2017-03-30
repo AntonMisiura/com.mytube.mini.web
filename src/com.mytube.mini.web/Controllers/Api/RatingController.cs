@@ -7,12 +7,12 @@ using Microsoft.Extensions.Logging;
 
 namespace com.mytube.mini.web.Controllers.Api
 {
-    [Route("api/rating")]
+    [Route("api/ratings")]
     public class RatingController : ApiController
     {
         protected override string Tag => nameof(RatingController);
 
-        private IRepository<Rating> _repository;
+        private IRatingRepository _repository;
 
 
         //TODO: HTTP module as a base for logging and exception handling
@@ -25,7 +25,7 @@ namespace com.mytube.mini.web.Controllers.Api
         //remove from constructor repository and logger
         //private field _repository move to api controller, or create other to do this
         public RatingController(
-            IRepository<Rating> repository,
+            IRatingRepository repository,
             ILogger<ApiController> logger)
             : base(logger)
         {
@@ -42,6 +42,12 @@ namespace com.mytube.mini.web.Controllers.Api
         public async Task<IActionResult> GetById(CancellationToken token, int id)
         {
             return await HandleAjaxCall(() => _repository.GetById(token, id));
+        }
+
+        [HttpGet("videos/{id:int}")]
+        public async Task<IActionResult> GetAll(CancellationToken token, int id)
+        {
+            return await HandleAjaxCall(() => _repository.GetByVideoId(token, id));
         }
 
         [HttpPost("")]

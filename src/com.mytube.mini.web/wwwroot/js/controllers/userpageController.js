@@ -1,4 +1,4 @@
-﻿tubeApp.controller("userpageController", function ($rootScope, $scope, $mdDialog, $state, $http, videosRepo, authService) {
+﻿tubeApp.controller("userpageController", function ($rootScope, $scope, $mdDialog, $state, $http, videosRepo, ratingsRepo, authService) {
 
     $scope.go = function (page) {
         $state.go(page);
@@ -55,15 +55,20 @@
         UserId: authService.currUser.id
     };
 
-    $scope.showVideoPageAtUserPage = function ($event) {
+    $scope.showVideoPageAtUserPage = function($event, video) {
         var vDlg = $mdDialog.prompt({
             templateUrl: "views/dialogs/video.html",
+            controller: "videoController",
             parent: angular.element(document.body),
-            resolve: {},
+            resolve: {
+                video: function() {
+                    return video;
+                }
+            },
             targetEvent: $event,
             clickOutsideToClose: true
         });
-        $mdDialog.show(vDlg).then(function () {
+        $mdDialog.show(vDlg).then(function() {
 
         });
     }

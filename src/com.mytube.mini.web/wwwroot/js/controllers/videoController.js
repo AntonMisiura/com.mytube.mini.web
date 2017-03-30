@@ -1,13 +1,30 @@
-﻿tubeApp.controller("videoController", function ($scope, $http, videosRepo, $mdDialog, authService) {
+﻿tubeApp.controller("videoController", function ($scope, $http, videosRepo, ratingsRepo, $mdDialog, video, authService) {
 
+    $scope.r = videosRepo;
+    $scope.v = video;
     $scope.myproperty = 5;
     $scope.videos = [];
-    videosRepo.all().then(function (r) {
-        $scope.videos = r.data;
-    },
-        function (error) {
-            $scope.status = "Unable to load videos: " + error.message;
+    $scope.ratings = [];
+    $scope.currentUserName = authService.currUser.name;
+
+    $scope.comment = {
+        UserId: authService.currUser.id,
+        VideoId: video.id,
+        Comment: "",
+        Mark: 4
+    };
+
+    $scope.addComment = function() {
+        ratingsRepo.add($scope.comment).then(function(r) {
+            console.log("Successfully added comment");
         });
+    };
+
+    $scope.showComments = function() {
+        ratingsRepo.getForVideo(video.id).then(function(r) {
+            $scope.ratings = r.data;
+        });
+    };
 
     $scope.cancel = function ($event) {
         $mdDialog.cancel();

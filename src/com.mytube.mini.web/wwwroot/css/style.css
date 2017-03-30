@@ -82,8 +82,8 @@
   }
 
 #videoDlgForScroll {
-    width: 600px;
-    height: 600px;
+    width: 700px;
+    height: 500px;
 }
 
 #textforvideo {
@@ -102,7 +102,27 @@
 }
 
 textarea#input_2 {
-    width: 300px;
+    width: 500px;
+}
+
+#videoInDLG {
+    width: 700px;
+    height: 400px;
+}
+
+#nameForVideoInDLG {
+    color: burlywood;
+}
+
+#comment {
+    color: brown;
+    margin: 10px;
+    padding: 10px;
+    /*border: 0.1px solid burlywood;*/
+}
+
+#commentAfter {
+    border: 1px solid black;
 }
 
   video {

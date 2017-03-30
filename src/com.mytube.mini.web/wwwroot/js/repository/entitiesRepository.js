@@ -27,8 +27,12 @@ tubeApp.factory("usersRepo", function ($http, BaseRepository) {
 });
 
 tubeApp.factory("ratingsRepo", function ($http, BaseRepository) {
-    var repo = new BaseRepository("api/users");
+    var repo = new BaseRepository("api/ratings");
     //extend or override functions
+
+    repo.getForVideo = function (id) {
+        return $http.get(this.baseurl + "/videos/" + id);
+    }
 
     return repo;
 });

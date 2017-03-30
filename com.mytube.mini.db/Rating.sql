@@ -8,6 +8,5 @@
     [CreatedDate] DATETIME2 NOT NULL DEFAULT GetUtcDate(),
     CONSTRAINT [FK_Rating_ToVideo] FOREIGN KEY ([VideoId]) REFERENCES [Video]([Id]),
     CONSTRAINT [FK_Rating_ToUser] FOREIGN KEY ([UserId]) REFERENCES [User]([Id]),
-    CONSTRAINT [CK_Rating_Rating] CHECK (Rating>=1 AND Rating<=5 ),
-	CONSTRAINT [UC_Rating] UNIQUE (VideoId, UserId)
+    CONSTRAINT [CK_Rating_Rating] CHECK (Rating>=1 AND Rating<=5 )
 )
