@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using com.mytube.mini.core.Contracts;
@@ -24,35 +25,32 @@ namespace com.mytube.mini.web.Controllers.Api
         }
 
         [HttpGet("")]
-        public async Task<IActionResult> GetAll(CancellationToken token)
+        public IEnumerable<User> GetAll(CancellationToken token)
         {
-            return await HandleAjaxCall(()=>_repository.GetAll(token));
+            return _repository.GetAll(token);
         }
 
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetById(CancellationToken token, int id)
+        public User GetById(CancellationToken token, int id)
         {
-            return await HandleAjaxCall(() => _repository.GetById(token, id));
+            return _repository.GetById(token, id);
         }
 
         [HttpPost("")]
-        public async Task<IActionResult> Add(CancellationToken token, [FromBody] User user)
+        public User Add(CancellationToken token, [FromBody] User user)
         {
-            return await HandleAjaxCall(async () =>
-            {
-                await _repository.Add(token, user);
-                await _repository.Save(token);
-                return user;
-            });
+            _repository.Add(token, user);
+            _repository.Save(token);
+            return user;
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(CancellationToken token, [FromBody]User user)
+        public IActionResult Login(CancellationToken token, [FromBody]User user)
         {
             if (user == null)
                 return NotFound("User doesn't exist");
 
-            var dbUser = await _repository.GetByLogin(token, user.Login);
+            var dbUser = _repository.GetByLogin(token, user.Login);
             if (PasswordHash.PasswordHash.ValidatePassowrd(user.Password, dbUser.Password))
             {
                 dbUser.Password = string.Empty;

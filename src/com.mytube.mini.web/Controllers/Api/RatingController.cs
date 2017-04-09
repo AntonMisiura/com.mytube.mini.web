@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using com.mytube.mini.core.Contracts;
 using com.mytube.mini.core.Entities;
@@ -33,32 +34,29 @@ namespace com.mytube.mini.web.Controllers.Api
         }
 
         [HttpGet("")]
-        public async Task<IActionResult> GetAll(CancellationToken token)
+        public IEnumerable<Rating> GetAll(CancellationToken token)
         {
-            return await HandleAjaxCall(() => _repository.GetAll(token));
+            return _repository.GetAll(token);
         }
 
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetById(CancellationToken token, int id)
+        public Rating GetById(CancellationToken token, int id)
         {
-            return await HandleAjaxCall(() => _repository.GetById(token, id));
+            return _repository.GetById(token, id);
         }
 
         [HttpGet("videos/{id:int}")]
-        public async Task<IActionResult> GetAll(CancellationToken token, int id)
+        public IEnumerable<Rating> GetAll(CancellationToken token, int id)
         {
-            return await HandleAjaxCall(() => _repository.GetByVideoId(token, id));
+            return _repository.GetByVideoId(token, id);
         }
 
         [HttpPost("")]
-        public async Task<IActionResult> AddRating(CancellationToken token, [FromBody] Rating rating)
+        public Rating AddRating(CancellationToken token, [FromBody] Rating rating)
         {
-            return await HandleAjaxCall(async () =>
-            {
-                await _repository.Add(token, rating);
-                await _repository.Save(token);
-                return rating;
-            });
+            _repository.Add(token, rating);
+            _repository.Save(token);
+            return rating;
         }
 
     }

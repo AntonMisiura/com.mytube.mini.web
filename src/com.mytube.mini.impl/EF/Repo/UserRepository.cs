@@ -13,9 +13,9 @@ namespace com.mytube.mini.impl.EF.Repo
         {
         }
 
-        public async Task<User> GetByLogin(CancellationToken token, string login)
+        public User GetByLogin(CancellationToken token, string login)
         {
-            return await Context.Set<User>().FirstOrDefaultAsync(e => e.Login == login);
+            return Context.Set<User>().FirstOrDefault(e => e.Login == login);
         }
     }
 }

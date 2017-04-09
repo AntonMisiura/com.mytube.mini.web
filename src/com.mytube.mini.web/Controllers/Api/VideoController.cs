@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,29 +32,29 @@ namespace com.mytube.mini.web.Controllers.Api
         }
 
         [HttpGet("")]
-        public async Task<IActionResult> GetAll(CancellationToken token)
+        public IEnumerable<Video> GetAll(CancellationToken token)
         {
-            return await HandleAjaxCall(() => _repository.GetAll(token));
+            return _repository.GetAll(token);
         }
 
         [HttpGet("users/{id:int}")]
-        public async Task<IActionResult> GetAll(CancellationToken token, int id)
+        public IEnumerable<Video> GetAll(CancellationToken token, int id)
         {
-            return await HandleAjaxCall(() => _repository.GetByUser(token, id));
+            return _repository.GetByUser(token, id);
         }
 
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetById(CancellationToken token, int id)
+        public Video GetById(CancellationToken token, int id)
         {
-            return await HandleAjaxCall(() => _repository.GetById(token, id));
+            return _repository.GetById(token, id);
         }
 
         [HttpGet("content/{id:int}")]
-        public async Task<FileStreamResult> GetFile(CancellationToken token, int id)
+        public FileStreamResult GetFile(CancellationToken token, int id)
         {
             try
             {
-                var video = await _repository.GetById(token, id);
+                var video = _repository.GetById(token, id);
                 var stream = new FileStream(video.Path, FileMode.Open);
                 return new FileStreamResult(stream, "video/mp4")
                 {
@@ -105,8 +106,8 @@ namespace com.mytube.mini.web.Controllers.Api
                 }
 
                 // Save video in DB
-                await _repository.Add(token, video);
-                await _repository.Save(token);
+                _repository.Add(token, video);
+                _repository.Save(token);
 
                 return Ok(video);
             }
