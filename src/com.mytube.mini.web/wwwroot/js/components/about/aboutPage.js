@@ -3,6 +3,21 @@
 var React = require("react");
 
 var About = React.createClass({
+    //statics:{
+    //    willTransitionTo: function(transition, params, query, callback){
+    //        if(!confirm("Are u sure u wanna to read a page?")){
+    //            transition.about();
+    //        } else {
+    //            callback();
+    //        }
+    //    },
+
+    //    willTransitionFrom: function(transition, component){
+    //        if(!confirm("Are u sure u wanna to leave a page?")){
+    //            transition.about();
+    //        }
+    //    }
+    //},
     render: function () {
         return (
             <div>
