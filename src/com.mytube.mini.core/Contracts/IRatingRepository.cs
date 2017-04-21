@@ -7,6 +7,6 @@ namespace com.mytube.mini.core.Contracts
 {
     public interface IRatingRepository : IRepository<Rating>
     {
-        Task<IEnumerable<Rating>> GetByVideoId(CancellationToken token, int id);
+        IEnumerable<Rating> GetByVideoId(CancellationToken token, int id);
     }
 }

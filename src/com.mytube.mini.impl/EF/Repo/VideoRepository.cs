@@ -14,9 +14,9 @@ namespace com.mytube.mini.impl.EF.Repo
         {
         }
 
-        public async Task<IEnumerable<Video>> GetByUser(CancellationToken token, int id)
+        public IEnumerable<Video> GetByUser(CancellationToken token, int id)
         {
-            return await Context.Set<Video>().Where(e => e.UserId == id).ToListAsync();
+            return Context.Set<Video>().Where(e => e.UserId == id).ToList();
         }
     }
 }

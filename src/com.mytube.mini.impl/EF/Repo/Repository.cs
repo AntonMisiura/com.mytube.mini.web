@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using com.mytube.mini.core.Contracts;
@@ -16,17 +17,17 @@ namespace com.mytube.mini.impl.EF.Repo
             Context = context;
         }
 
-        public async Task<T> GetById(CancellationToken token, int id)
+        public T GetById(CancellationToken token, int id)
         {
-            return await Context.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
+            return Context.Set<T>().FirstOrDefault(e => e.Id == id);
         }
 
-        public async Task<IEnumerable<T>> GetAll(CancellationToken token)
+        public IEnumerable<T> GetAll(CancellationToken token)
         {
-            return await Context.Set<T>().ToListAsync(token);
+            return Context.Set<T>().ToList();
         }
 
-        public Task Add(CancellationToken token, T t)
+        public void Add(CancellationToken token, T t)
         {
             var creatable = t as IEntityCreatable;
             if (creatable != null)
@@ -35,12 +36,12 @@ namespace com.mytube.mini.impl.EF.Repo
                 creatable.CreatedDate = DateTime.UtcNow;
             }
 
-            return Task.FromResult(Context.Add(t));
+            //return Task.FromResult(Context.Add(t));
         }
 
-        public async Task<bool> Save(CancellationToken token)
+        public bool Save(CancellationToken token)
         {
-            return await Context.SaveChangesAsync() > 0;
+            return Context.SaveChanges() > 0;
         }
     }
 }

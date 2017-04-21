@@ -6,6 +6,6 @@ namespace com.mytube.mini.core.Contracts
 {
     public interface IUserRepository : IRepository<User>
     {
-        Task<User> GetByLogin(CancellationToken token, string login);
+        User GetByLogin(CancellationToken token, string login);
     }
 }
